@@ -57,7 +57,7 @@ router.get('/top', function (request, response) {
 		return new Promise((resolve,reject) => {
 			var options = {
 				protocol: "http:",
-				host: "localhost",
+				host: "backweb1",
 				port: 8080,
 				path: "/back1",
 				method: "GET"
@@ -84,7 +84,7 @@ router.get('/top', function (request, response) {
 		return new Promise((resolve,reject) => {
 			var options = {
 				protocol: "http:",
-				host: "localhost",
+				host: "backweb2",
 				port: 8080,
 				path: "/back2",
 				method: "GET"
