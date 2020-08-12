@@ -22,7 +22,7 @@ pipeline {
           openshift.withCluster() {
             openshift.withProject() {
               echo "Build Appliction Image: frontweb"
-              def bc = openshift.selector("bc", "frontweb")
+              def bc = openshift.selector("bc", "frontweb-v10")
               bc.startBuild().logs("-f")
               def bb = bc.narrow("bc").related("builds")
               timeout(10) {
