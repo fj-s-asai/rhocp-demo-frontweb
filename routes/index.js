@@ -19,8 +19,8 @@ const router = express.Router();
 router.get('/top', function (request, response) {
 	
 	let totalrr = {};
-	totalrr.backweb1 = {};
-	totalrr.backweb2 = {};
+	totalrr.title = {};
+	totalrr.contents = {};
   
   
     /*	---------------------------------------------------------------------/
@@ -45,8 +45,8 @@ router.get('/top', function (request, response) {
       tmp13.image = "fashion-2766734_1920.jpg";
       tmp13.headline = "そのまま街へでかけよう";
       tmp13.sub_headline = "夏のスタイルは思いのままに";
-      totalrr.backweb1.status = 200;
-      totalrr.backweb1.body = obj1;
+      totalrr.title.status = 200;
+      totalrr.title.body = obj1;
       
       
       
@@ -75,13 +75,13 @@ router.get('/top', function (request, response) {
       tmp24.sub_headline = "より快適に、より心地よいライフスタイルを";
       
       
-      totalrr.backweb2.status = 200;
-      totalrr.backweb2.body = obj2;
+      totalrr.contents.status = 200;
+      totalrr.contents.body = obj2;
       
       response.render('top',{ 
 				title:'UG Style',
-				content1: totalrr.backweb1.body,
-				content2: totalrr.backweb2.body});
+				content1: totalrr.title.body,
+				content2: totalrr.contents.body});
       
     }
   
@@ -103,8 +103,8 @@ router.get('/top', function (request, response) {
       tmp12.headline = "子供たちの冬休みは？";
       tmp12.sub_headline = "雪山でも暖かく、UGスタイル";
       
-      totalrr.backweb1.status = 200;
-      totalrr.backweb1.body = obj1;
+      totalrr.title.status = 200;
+      totalrr.title.body = obj1;
       
       let obj2 = {};
       obj2.result = "success";
@@ -126,13 +126,13 @@ router.get('/top', function (request, response) {
       tmp23.sub_headline = "雪山へでかけよう、ファッションを楽しもう";
       
       
-      totalrr.backweb2.status = 200;
-      totalrr.backweb2.body = obj2;
+      totalrr.contents.status = 200;
+      totalrr.contents.body = obj2;
       
       response.render('top',{ 
 				title:'UG Style',
-				content1: totalrr.backweb1.body,
-				content2: totalrr.backweb2.body});
+				content1: totalrr.title.body,
+				content2: totalrr.contents.body});
       
     }
   
@@ -152,37 +152,10 @@ router.get('/top', function (request, response) {
 	function serial () {
 		let promise = Promise.resolve();
 		promise
-			.then(call_backweb1.bind(this,totalrr))
-			/*
-			.then((result) => {
-				return new Promise(function(resolve, reject){
-					totalrr.backweb1 = result;
-					resolve(1);
-				});
-			})
-			.catch((error) => {
-				console.log("backweb1:" + error.message);
-				totalrr.backweb1 = error.result;
-			})
-			*/
-
-			.then(call_backweb2.bind(this,totalrr))
-			/*
-			.then((result) => {
-				return new Promise(function(resolve, reject){
-					totalrr.backweb2 = result;
-					resolve(2);
-				});
-			})
-			.catch((error) => {
-				console.log("backweb2:" + error.message);
-				totalrr.backweb2 = error.result;
-			})
-			*/
-
+			.then(call_title.bind(this,totalrr))
+			.then(call_contents.bind(this,totalrr))
 			.then(render_page);
 	}
-
 	
 	/*	---------------------------------------------------------------------/
  	 *	promise : parallel
@@ -192,8 +165,8 @@ router.get('/top', function (request, response) {
 		
 		function pp() {
 			return Promise.all([
-				call_backweb1(totalrr),
-				call_backweb2(totalrr)
+				call_title(totalrr),
+				call_contents(totalrr)
 			]);
 		}
 		
@@ -206,42 +179,42 @@ router.get('/top', function (request, response) {
 	
 	
 	/*	---------------------------------------------------------------------/
- 	 *	promise:function():call_backweb1
+ 	 *	promise:function():call_title
 	 *	--------------------------------------------------------------------*/
-	function call_backweb1(totalrr) {
+	function call_title(totalrr) {
 		return new Promise((resolve,reject) => {
 			let options = {
 				protocol: "http:",
 				host: "backweb1",
 				port: 8080,
-				path: "/back1",
+				path: "/back1_title",
 				method: "GET"
 			};
 			let rr = {};  
 			rr.status = ''; 
 			rr.body = 'Service backweb1 Unavailable';
-			totalrr.backweb1 = rr;
-			catll_backweb(resolve,reject,options,rr);
+			totalrr.title = rr;
+			_call_backweb(resolve,reject,options,rr);
 		});
 	}
 	
 	/*	---------------------------------------------------------------------/
- 	 *	promise:function():call_backweb2
+ 	 *	promise:function():call_contents
 	 *	--------------------------------------------------------------------*/
-	function call_backweb2(totalrr) {
+	function call_contents(totalrr) {
 		return new Promise((resolve,reject) => {
 			var options = {
 				protocol: "http:",
-				host: "backweb2",
+				host: "backweb1",
 				port: 8080,
-				path: "/back2",
+				path: "/back1_contents",
 				method: "GET"
 			};
 			let rr = {};  
 			rr.status = ''; 
 			rr.body =  'Service backweb1 Unavailable';
-			totalrr.backweb2 = rr;
-			catll_backweb(resolve,reject,options,rr);
+			totalrr.contents = rr;
+			_call_backweb(resolve,reject,options,rr);
 		});
 	}
 	
@@ -252,8 +225,8 @@ router.get('/top', function (request, response) {
 		return new Promise((resolve,reject) => {
 			response.render('top',{ 
 				title:'UG Style',
-				content1: totalrr.backweb1.body,
-				content2: totalrr.backweb2.body});
+				content1: totalrr.title.body,
+				content2: totalrr.contents.body});
 			resolve("render complete");
 		});
 	}
@@ -262,7 +235,7 @@ router.get('/top', function (request, response) {
 	/*	---------------------------------------------------------------------/
  	 *	common:function():http get
 	 *	--------------------------------------------------------------------*/
-	function catll_backweb(resolve,reject,options,rr) {
+	function _call_backweb(resolve,reject,options,rr) {
 		const req = http.request(options,(res)=>{
 			let body = '';
 			rr.status = res.statusCode;
