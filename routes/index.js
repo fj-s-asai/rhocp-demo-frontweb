@@ -141,8 +141,8 @@ router.get('/top', function (request, response) {
   /*	---------------------------------------------------------------------/
    *	main
    *	--------------------------------------------------------------------*/
-  //debug1(request,response);
-  debug2(request,response);
+  debug1(request,response);
+  //debug2(request,response);
   //serial();
   //parallel();
 
