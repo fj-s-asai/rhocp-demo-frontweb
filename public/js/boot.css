@@ -1,0 +1,11 @@
+.main-back {
+  background-image: url("../images/beautiful-2576840_1920.jpg");
+  background-size: cover;
+}
+
+.image-fit {
+  object-fit: cover;
+}
+
+
+
