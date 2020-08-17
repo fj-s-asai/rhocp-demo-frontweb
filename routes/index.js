@@ -225,6 +225,8 @@ router.get('/top', function (request, response) {
    *	promise:function():render_page
    *	--------------------------------------------------------------------*/
   function render_page () {
+      console.log("title:" + totalrr.title.body);
+      console.log("contents:" + totalrr.contents.body);
       return new Promise((resolve,reject) => {
           response.render('top',{ 
               meta:totalmeta,
