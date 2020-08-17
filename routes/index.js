@@ -227,7 +227,7 @@ router.get('/top', function (request, response) {
   function render_page () {
       return new Promise((resolve,reject) => {
           response.render('top',{ 
-              title:'UG Style',
+              meta:totalmeta,
               content1: totalrr.title.body,
               content2: totalrr.contents.body});
           resolve("render complete");
