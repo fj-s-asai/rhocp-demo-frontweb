@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ja" >
   <head>
-    <title><%= title %></title>
+    <title><%= meta.title %></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="carousel.css" rel="stylesheet">
   </head>
@@ -50,7 +50,7 @@
     <div class="carousel-inner">
       <% for(var i=0;i<content1.json.length;i++) { var obj = content1.json[i]; %>
       <div class="carousel-item <% if(0==i) { %>active<%}%>">
-        <img class="first-slide" src="/public/images/<%=obj.image %>" alt="First slide" style="width: 100%; height: 500px; border-radius: 21px 21px 0 0; object-fit: cover;">
+        <img class="first-slide" src="<%=meta.cds%>/images/<%=obj.image %>" alt="First slide" style="width: 100%; height: 500px; border-radius: 21px 21px 0 0; object-fit: cover;">
         <div class="container">
           <div class="carousel-caption text-left">
             <h1><%=obj.headline %></h1>
@@ -113,7 +113,7 @@
     <div class="row featurette">
       <%if (0 ==i%2) { %>
       <div class="col-md-5">
-        <img class="first-slide" src="/public/images/<%=obj.image %>" alt="First slide" style="width: 350px; height: 350px; border-radius: 21px 21px 0 0; object-fit: cover;">
+        <img class="first-slide" src="<%=meta.cds%>/images/<%=obj.image %>" alt="First slide" style="width: 350px; height: 350px; border-radius: 21px 21px 0 0; object-fit: cover;">
       </div>
       <%}%>
       <div class="col-md-7">
@@ -122,7 +122,7 @@
       </div>
       <%if (1 ==i%2) { %>
       <div class="col-md-5">
-        <img class="first-slide" src="/public/images/<%=obj.image %>" alt="First slide" style="width: 350px; height: 350px; border-radius: 21px 21px 0 0; object-fit: cover;">
+        <img class="first-slide" src="<%=meta.cds%>/images/<%=obj.image %>" alt="First slide" style="width: 350px; height: 350px; border-radius: 21px 21px 0 0; object-fit: cover;">
       </div>
       <%}%>
     </div>

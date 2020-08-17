@@ -18,6 +18,9 @@ const router = express.Router();
 *	-------------------------------------------------------------------------*/
 router.get('/top', function (request, response) {
 
+  let totalmeta = {};
+  totalmeta.title = "UG-STYLE";
+  totalmeta.cds = "/public";
   let totalrr = {};
   totalrr.title = {};
   totalrr.contents = {};
@@ -79,7 +82,7 @@ router.get('/top', function (request, response) {
     totalrr.contents.body = obj2;
 
     response.render('top',{ 
-              title:'UG Style',
+              meta:totalmeta,
               content1: totalrr.title.body,
               content2: totalrr.contents.body});
 
@@ -130,7 +133,7 @@ router.get('/top', function (request, response) {
     totalrr.contents.body = obj2;
 
     response.render('top',{ 
-              title:'UG Style',
+              meta:totalmeta,
               content1: totalrr.title.body,
               content2: totalrr.contents.body});
 
