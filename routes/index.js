@@ -249,6 +249,7 @@ router.get('/top', function (request, response) {
               body += chunk;
           });
           res.on("end",(chunk)=>{
+              console.log(body);
               rr.body = JSON.parse(body);
               resolve(rr);
           });
