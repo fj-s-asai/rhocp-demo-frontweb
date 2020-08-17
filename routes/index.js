@@ -20,7 +20,7 @@ router.get('/top', function (request, response) {
 
   let totalmeta = {};
   totalmeta.title = "UG-STYLE";
-  totalmeta.cds = "/public";
+  totalmeta.cds = process.env.CDS_HOME;
   let totalrr = {};
   totalrr.title = {};
   totalrr.contents = {};
