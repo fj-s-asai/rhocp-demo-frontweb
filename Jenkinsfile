@@ -40,12 +40,12 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              openshift.selector('dc', 'frontweb-v10').rollout().1.0();
-              def dc = openshift.selector("dc", "frontweb-v10").object()
-              while (dc.spec.replicas != dc.status.availableReplicas) {
-                sleep 1
+              def rm = openshift.selector("dc", "frontweb-v10").rollout()
+              timeout(10) { 
+                openshift.selector("dc", "frontweb-v10").related('pods').untilEach(1) {
+                  return (it.object().status.phase == "Running")
+                }
               }
-              sleep 30
             }
           }
         }
