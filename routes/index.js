@@ -250,7 +250,9 @@ router.get('/top', function (request, response) {
           });
           res.on("end",(chunk)=>{
               console.log(body);
-              rr.body = JSON.parse(body);
+              try {
+                rr.body = JSON.parse(body);
+              } catch(error) {}
               resolve(rr);
           });
       });
