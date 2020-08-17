@@ -40,13 +40,24 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              openshift.tag("frontweb:1.0", "frontweb:1.1")
-              sleep 10
               openshift.selector('dc', 'frontweb-v10').rollout().1.0();
               def dc = openshift.selector("dc", "frontweb-v10").object()
               while (dc.spec.replicas != dc.status.availableReplicas) {
                 sleep 1
               }
+              sleep 30
+            }
+          }
+        }
+      }
+    }
+    stage("create tag") {
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.withProject() {
+              echo "Create Tag Image: frontweb"
+              openshift.tag("frontweb:1.0", "frontweb:1.1")
             }
           }
         }
