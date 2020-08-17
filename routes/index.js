@@ -225,8 +225,6 @@ router.get('/top', function (request, response) {
    *	promise:function():render_page
    *	--------------------------------------------------------------------*/
   function render_page () {
-      console.log("title:" + totalrr.title.body);
-      console.log("contents:" + totalrr.contents.body);
       return new Promise((resolve,reject) => {
           response.render('top',{ 
               meta:totalmeta,
@@ -249,7 +247,6 @@ router.get('/top', function (request, response) {
               body += chunk;
           });
           res.on("end",(chunk)=>{
-              console.log(body);
               try {
                 rr.body = JSON.parse(body);
               } catch(error) {
@@ -275,15 +272,6 @@ router.get('/top', function (request, response) {
 /*	--------------------------------------------------------------------------/
 *	ルーティング：デバッグ用
 *	-------------------------------------------------------------------------*/
-router.get('/back1', function (request, response) {
-  console.log("back11111111");
-  response.send('{"back-1-key01:value01,key02:value02}');
-});
-
-router.get('/back2', function (request, response) {
-  console.log("back222222");
-  response.send('{"back-2-key01:value01,key02:value02}');
-});
 
 router.get('/boot', function (request, response) {
   response.render('boot',{});
