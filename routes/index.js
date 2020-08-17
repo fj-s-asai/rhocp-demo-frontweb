@@ -252,12 +252,15 @@ router.get('/top', function (request, response) {
               console.log(body);
               try {
                 rr.body = JSON.parse(body);
-              } catch(error) {}
+              } catch(error) {
+                rr.body = JSON.parse("{json:[]}")
+              }
               resolve(rr);
           });
       });
       req.on('error',(error) => {
-          console.log(error.message)
+          console.log(error.message);
+          rr.body = JSON.parse("{json:[]}")
           resolve(rr);
       });
       req.end();
