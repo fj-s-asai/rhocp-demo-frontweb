@@ -38,11 +38,11 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          openshift.withCluster() {
-            openshift.withProject() {
-              def rm = apps.selector("deploy", "frontweb-v10").rollout()
+          kubernetes.withCluster() {
+            kubernetes.withProject() {
+              def rm = kubernetes.selector("deploy", "frontweb-v10").rollout()
               timeout(10) { 
-                apps.selector("deploy", "frontweb-v10").related('pods').untilEach(1) {
+                kubernetes.selector("deploy", "frontweb-v10").related('pods').untilEach(1) {
                   return (it.object().status.phase == "Running")
                 }
               }
