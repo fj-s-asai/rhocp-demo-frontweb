@@ -40,12 +40,8 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              def rm = openshift.selector("deploy", "frontweb-v10").rollout()
+              rollout(deployment: 'frontweb-v10', namespace: 'demo')
               timeout(5) { 
-                openshift.selector("deploy", "frontweb-v10").related('pods').untilEach(1) {
-                  return (it.object().status.phase == "Running")
-                }
-              }
             }
           }
         }
