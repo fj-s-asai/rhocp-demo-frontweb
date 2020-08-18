@@ -36,15 +36,8 @@ pipeline {
       }
     }
     stage('deploy') {
-      steps {
-        script {
-          openshift.withCluster() {
-            openshift.withProject() {
-              rollout(deployment: 'frontweb-v10', namespace: 'demo')
-              timeout(5) { 
-            }
-          }
-        }
+      rollout(deployment: 'frontweb-v10', namespace: 'demo')
+        timeout(5) { 
       }
     }
   }
