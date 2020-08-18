@@ -36,8 +36,19 @@ pipeline {
       }
     }
     stage('deploy') {
-      rollout(deployment: 'frontweb-v10', namespace: 'demo')
-        timeout(5) { 
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.withProject() {
+              def rm = selector("deploy", "frontweb-v10").rollout()
+              timeout(10) { 
+                selector("deploy", "frontweb-v10").related('pods').untilEach(1) {
+                  return (it.object().status.phase == "Running")
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
