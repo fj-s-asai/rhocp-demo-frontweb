@@ -38,13 +38,7 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          openshift.withCluster() {
-            openshift.withProject() {
-              def rm = openshift.selector("deployments", "frontweb-v10").rollout()
-              timeout(10) { 
-                openshift.selector("deployments", "frontweb-v10").related('pods').untilEach(1) {
-                  return (it.object().status.phase == "Running")
-                }
+               sh 'oc delete pod  frontweb-v10-99f6bdcb5-hw6wl'
               }
             }
           }
