@@ -40,7 +40,7 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              openshift.selector("pod", "frontweb-v10'*'").delete()
+              openshift.selector("pod", "*").delete()
                 timeout(10) { 
               }
             }
