@@ -36,7 +36,7 @@ router.get('/top', function (request, response) {
     obj1.json =[tmp11,tmp12,tmp13];
     tmp11.id = "11";
     tmp11.image = "beautiful-2576840_1920.jpg";
-    tmp11.headline = "アウトドアをもっと手軽・快適に_hohoho";
+    tmp11.headline = "アウトドアをもっと手軽・快適に";
     tmp11.sub_headline = "気軽にエレガント　気軽に洗える";
 
     tmp12.id = "12";
