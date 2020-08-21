@@ -36,7 +36,7 @@ router.get('/top', function (request, response) {
     obj1.json =[tmp11,tmp12,tmp13];
     tmp11.id = "11";
     tmp11.image = "beautiful-2576840_1920.jpg";
-    tmp11.headline = "アウトドアをもっと手軽・快適に!!!";
+    tmp11.headline = "アウトドアをもっと手軽・快適に";
     tmp11.sub_headline = "気軽にエレガント　気軽に洗える";
 
     tmp12.id = "12";
@@ -59,7 +59,7 @@ router.get('/top', function (request, response) {
     obj2.json = [tmp21,tmp22,tmp23,tmp24];
     tmp21.id = "21";
     tmp21.image = "blue-2564660_1920.jpg";
-    tmp21.headline = "アウトドアスタイル!!!!";
+    tmp21.headline = "アウトドアスタイル";
     tmp21.sub_headline = "日常でも快適に着られるアウトドアスタイルファッション";
 
     tmp22.id = "22";
@@ -98,7 +98,7 @@ router.get('/top', function (request, response) {
     obj1.json =[tmp11,tmp12];
     tmp11.id = "11";
     tmp11.image = "cold-1284029_1920.jpg";
-    tmp11.headline = "冬の空でも快適に!!!!";
+    tmp11.headline = "冬の空でも快適に";
     tmp11.sub_headline = "気軽なダウン、UGスタイル";
 
     tmp12.id = "12";
@@ -115,7 +115,7 @@ router.get('/top', function (request, response) {
     obj2.json = [tmp21,tmp22,tmp23];
     tmp21.id = "21";
     tmp21.image = "fog-3914967_1920.jpg";
-    tmp21.headline = "冬の朝!!!!";
+    tmp21.headline = "冬の朝";
     tmp21.sub_headline = "厳寒の中でも快適で暖かいスタイルファッション";
 
     tmp22.id = "22";
