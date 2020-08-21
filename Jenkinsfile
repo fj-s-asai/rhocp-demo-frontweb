@@ -35,12 +35,12 @@ pipeline {
         }
       }
     }
-    stage('delete pod') {
+    stage('deploy') {
       steps {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              openshift.selector("rs", "frontweb-v10").related("pod")
+              def rm = openshift.selector("deploy", "frontweb-v10").related("pod")
                 timeout(10) { 
               }
             }
