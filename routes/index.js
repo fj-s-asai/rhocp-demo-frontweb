@@ -98,7 +98,7 @@ router.get('/top', function (request, response) {
     obj1.json =[tmp11,tmp12];
     tmp11.id = "11";
     tmp11.image = "cold-1284029_1920.jpg";
-    tmp11.headline = "冬の空でも快適に";
+    tmp11.headline = "冬の空でも快適に!?!?!?!?";
     tmp11.sub_headline = "気軽なダウン、UGスタイル";
 
     tmp12.id = "12";
