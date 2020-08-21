@@ -40,7 +40,7 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              def deploymentSelector = openshift.selector("deployment/frontweb-v10").related("pod")
+              def rm = openshift.selector("deployment/frontweb-v10").related("pod")
                 timeout(10) { 
               }
             }
