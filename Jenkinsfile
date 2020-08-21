@@ -35,12 +35,12 @@ pipeline {
         }
       }
     }
-    stage('delete pod') {
+    stage('deploy') {
       steps {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              sh "oc delete pod frontweb-v10-99f6bdcb5-srw44"
+              sh "oc rollout restart deployment/frontweb-v10"
                 timeout(10) {
               }
             }
