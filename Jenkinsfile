@@ -40,7 +40,8 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              sh "oc delete pod frontweb-v10-99f6bdcb5-bwqmj"
+              sh "oc delete pod frontweb-v10-99f6bdcb5-srw44"
+              timeout(10) {
             }
           }
         }
