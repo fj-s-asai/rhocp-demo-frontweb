@@ -35,13 +35,14 @@ pipeline {
         }
       }
     }
-    stage("create tag") {
+    stage('deploy') {
       steps {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              echo "Create Tag Image: frontweb"
-              openshift.tag("frontweb:1.0", "frontweb:1.1")
+              sh "oc rollout restart deployment/frontweb-v10"
+                timeout(10) {
+              }
             }
           }
         }
