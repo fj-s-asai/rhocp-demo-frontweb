@@ -155,26 +155,16 @@ router.get('/top', function (request, response) {
   function serial () {
       let promise = Promise.resolve();
       promise
-          .then(call_title.bind(this,totalrr))
-          .then(call_contents.bind(this,totalrr))
-          .then(render_page);
-  }
-
-  /*	---------------------------------------------------------------------/
-   *	promise : parallel
-   *	--------------------------------------------------------------------*/
-  function parallel () {
-      let promise = Promise.resolve();
-
-      function pp() {
-          return Promise.all([
-              call_title(totalrr),
-              call_contents(totalrr)
-          ]);
-      }
-
-      promise
-          .then(pp)
+          .then(call_backweb1)
+          .then((rr) => {
+             return new Promise((resolve,reject) => {
+               console.log(rr.body.title.body);
+               console.log(rr.body.contents.body);
+               totalrr.title.body = rr.body.title.body;
+               totalrr.contents.body = rr.body.contents.body;
+               resolve("connection complete");
+             });
+          })
           .then(render_page);
   }
 
@@ -184,40 +174,17 @@ router.get('/top', function (request, response) {
   /*	---------------------------------------------------------------------/
    *	promise:function():call_title
    *	--------------------------------------------------------------------*/
-  function call_title(totalrr) {
+  function call_backweb1() {
       return new Promise((resolve,reject) => {
           let options = {
               protocol: "http:",
               host: "backweb1",
               port: 8080,
-              path: "/back1_title",
+              path: "/back1",
               method: "GET"
           };
           let rr = {};  
-          rr.status = ''; 
-          rr.body = 'Service backweb1 Unavailable';
-          totalrr.title = rr;
-          _call_backweb(resolve,reject,options,rr);
-      });
-  }
-
-  /*	---------------------------------------------------------------------/
-   *	promise:function():call_contents
-   *	--------------------------------------------------------------------*/
-  function call_contents(totalrr) {
-      return new Promise((resolve,reject) => {
-          var options = {
-              protocol: "http:",
-              host: "backweb1",
-              port: 8080,
-              path: "/back1_contents",
-              method: "GET"
-          };
-          let rr = {};  
-          rr.status = ''; 
-          rr.body =  'Service backweb1 Unavailable';
-          totalrr.contents = rr;
-          _call_backweb(resolve,reject,options,rr);
+          _call_backweb(resolve,reject,options);
       });
   }
 
@@ -240,6 +207,7 @@ router.get('/top', function (request, response) {
    *	--------------------------------------------------------------------*/
   function _call_backweb(resolve,reject,options,rr) {
       const req = http.request(options,(res)=>{
+          let rr = {}
           let body = '';
           rr.status = res.statusCode;
           res.setEncoding("utf-8");
