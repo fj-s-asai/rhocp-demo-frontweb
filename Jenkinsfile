@@ -22,7 +22,7 @@ pipeline {
           openshift.withCluster() {
             openshift.withProject() {
               echo "Build Appliction Image: frontweb"
-              def bc = openshift.selector("bc", "frontweb-v10")
+              def bc = openshift.selector("bc", "frontweb-v11")
               bc.startBuild().logs("-f")
               def bb = bc.narrow("bc").related("builds")
               timeout(10) {
@@ -38,13 +38,10 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          kubernetes.withCluster() {
-            kubernetes.withProject() {
-              def rm = kubernetes.selector("deploy", "frontweb-v10").rollout()
-              timeout(10) { 
-                kubernetes.selector("deploy", "frontweb-v10").related('pods').untilEach(1) {
-                  return (it.object().status.phase == "Running")
-                }
+          openshift.withCluster() {
+            openshift.withProject() {
+              sh "oc rollout restart deployment/frontweb-v11"
+                timeout(10) { 
               }
             }
           }
