@@ -158,8 +158,8 @@ router.get('/top', function (request, response) {
           .then(call_backweb1)
           .then((rr) => {
              return new Promise((resolve,reject) => {
-               console.log(rr.body.title.body);
-               console.log(rr.body.contents.body);
+               //console.log(rr.body.title.body);
+               //console.log(rr.body.contents.body);
                totalrr.title.body = rr.body.title.body;
                totalrr.contents.body = rr.body.contents.body;
                resolve("connection complete");
@@ -193,6 +193,8 @@ router.get('/top', function (request, response) {
    *	--------------------------------------------------------------------*/
   function render_page () {
       return new Promise((resolve,reject) => {
+          console.log(totalrr.title.body);
+          console.log(totalrr.contents.body);
           response.render('top',{ 
               meta:totalmeta,
               content1: totalrr.title.body,
