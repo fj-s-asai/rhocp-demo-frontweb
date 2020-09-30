@@ -59,7 +59,7 @@ router.get('/top', function (request, response) {
     obj2.json = [tmp21,tmp22,tmp23,tmp24];
     tmp21.id = "21";
     tmp21.image = "blue-2564660_1920.jpg";
-    tmp21.headline = "アウトドアスタイル";
+    tmp21.headline = "アウトドアスタイル(Outdoor)";
     tmp21.sub_headline = "日常でも快適に着られるアウトドアスタイルファッション";
 
     tmp22.id = "22";
